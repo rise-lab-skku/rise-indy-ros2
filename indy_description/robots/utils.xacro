@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ========================================================== -->
+  <!-- Material definitions                                       -->
+  <!-- ========================================================== -->
+
+
+  <material name="metal_white">
+    <color rgba="0.866666666666667 0.866666666666667 0.890196078431373 1" />
+  </material>
+
+
+  <!-- ========================================================== -->
+  <!-- Function definitions                                       -->
+  <!-- ========================================================== -->
+
+
+  <xacro:macro name="set_property_if_joint_exist" params="joint_id property_name">
+
+    <xacro:property name="kinematics_dict" value="${xacro.load_yaml(model + '/kinematics.yaml')['kinematics']}"/>
+    <xacro:property name="key" value="joint${joint_id}"/>
+
+    <xacro:if value="${key in kinematics_dict}">
+      <xacro:property name="${property_name}" value="true" scope="parent"/>
+    </xacro:if>
+    <xacro:unless value="${key in kinematics_dict}">
+      <xacro:property name="${property_name}" value="false" scope="parent"/>
+    </xacro:unless>
+  </xacro:macro>
+
+
+  <!-- ========================================================== -->
+  <!-- Macro definitions for the robot elements                   -->
+  <!--  * [indy_link ] defines a link with visual and collision   -->
+  <!--                 geometry and inertial properties           -->
+  <!--  * [indy_joint] defines a joint with safety controller     -->
+  <!-- ========================================================== -->
+
+
+  <xacro:macro name="indy_link" params="arm_id:=^ model:=^ description_pkg:=^ link_id color when:=true">
+    <xacro:if value="${when}">
+
+      <xacro:property name="physical_parameters" value="${xacro.load_yaml(model + '/physical_parameters.yaml')['inertia_parameters']}"/>
+      <xacro:property name="link_mass" value="${physical_parameters['link' + str(link_id) + '_mass']}"/>
+      <xacro:property name="link_inertia" value="${physical_parameters['link' + str(link_id)]}"/>
+
+      <link name="${arm_id}_link${link_id}">
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <mesh filename="package://${description_pkg}/meshes/${model}/visual/${model}_${link_id}.stl"/>
+          </geometry>
+          <material name="${color}"/>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <mesh filename="package://${description_pkg}/meshes/${model}/collision/${model}_${link_id}.stl"/>
+          </geometry>
+        </collision>
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="${link_mass}"/>
+          <inertia
+            ixx="${link_inertia['ixx']}" iyy="${link_inertia['iyy']}" izz="${link_inertia['izz']}"
+            ixy="${link_inertia['ixy']}" iyz="${link_inertia['iyz']}" ixz="${link_inertia['ixz']}" />
+        </inertial>
+      </link>
+    </xacro:if>
+  </xacro:macro>
+
+
+  <xacro:macro name="indy_joint" params="arm_id:=^ model:=^ description_pkg:=^ joint_id when:=true">
+    <xacro:if value="${when}">
+
+      <xacro:property name="joint_origin" value="${xacro.load_yaml(model + '/kinematics.yaml')['kinematics']['joint' + str(joint_id)]}"/>
+      <xacro:property name="joint_limit" value="${xacro.load_yaml(model + '/joint_limits.yaml')['joint_limits']['joint' + str(joint_id)]}"/>
+
+      <joint name="${arm_id}_joint${joint_id}" type="revolute">
+        <parent link="${arm_id}_link${joint_id}"/>
+        <child link="${arm_id}_link${joint_id + 1}"/>
+        <origin
+          xyz="${joint_origin['x']} ${joint_origin['y']} ${joint_origin['z']}"
+          rpy="${joint_origin['roll']} ${joint_origin['pitch']} ${joint_origin['yaw']}"/>
+        <axis xyz="0 0 1"/>
+        <limit
+          lower="${joint_limit['min_position']}" upper="${joint_limit['max_position']}"
+          effort="${joint_limit['max_effort']}" velocity="${joint_limit['max_velocity']}"/>
+        <safety_controller
+          k_position="100.0" k_velocity="40.0"
+          soft_lower_limit="${joint_limit['min_position']}" soft_upper_limit="${joint_limit['max_position']}"/>
+      </joint>
+    </xacro:if>
+  </xacro:macro>
+
+
+</robot>

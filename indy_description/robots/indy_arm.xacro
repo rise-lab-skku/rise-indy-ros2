@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="indy">
+  <!-- [ arm_id ] Namespace of the indy arm. Should be unique if multiple indy arms are used. -->
+  <!-- [ model  ] The model of the indy arm. It should be one of the folders in 'config' folder. -->
+  <xacro:macro name="indy_arm" params="arm_id:='indy' model description_pkg:='indy_description' connected_to:='' xyz:='0 0 0' rpy:='0 0 0'">
+
+    <!-- OPTIONAL: Add a joint between the arm and the connected_to link -->
+    <xacro:unless value="${not connected_to}">
+      <joint name="${arm_id}_joint_${connected_to}" type="fixed">
+        <parent link="${connected_to}"/>
+        <child link="${arm_id}_link0"/>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+      </joint>
+    </xacro:unless>
+
+    <!-- Main indy arm -->
+    <xacro:include filename="$(find ${description_pkg})/robots/utils.xacro"/>
+    <xacro:property name="indy_material" value="metal_white"/>
+    <xacro:set_property_if_joint_exist joint_id="6" property_name="joint6_exist"/>
+
+    <xacro:indy_link link_id="0" color="${indy_material}"/>
+    <xacro:indy_link link_id="1" color="${indy_material}"/>
+    <xacro:indy_link link_id="2" color="${indy_material}"/>
+    <xacro:indy_link link_id="3" color="${indy_material}"/>
+    <xacro:indy_link link_id="4" color="${indy_material}"/>
+    <xacro:indy_link link_id="5" color="${indy_material}"/>
+    <xacro:indy_link link_id="6" color="${indy_material}"/>
+    <xacro:indy_link link_id="7" color="${indy_material}" when="${joint6_exist}"/>
+
+    <xacro:indy_joint joint_id="0"/>
+    <xacro:indy_joint joint_id="1"/>
+    <xacro:indy_joint joint_id="2"/>
+    <xacro:indy_joint joint_id="3"/>
+    <xacro:indy_joint joint_id="4"/>
+    <xacro:indy_joint joint_id="5"/>
+    <xacro:indy_joint joint_id="6" when="${joint6_exist}"/>
+
+  </xacro:macro>
+</robot>
