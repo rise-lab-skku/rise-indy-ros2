@@ -4,6 +4,8 @@ ROS2 integration for Neuromeka research manipulators
 
 1. [indy\_description](#indy_description)
 2. [indy\_gazebo](#indy_gazebo)
+3. [Build and Test](#build-and-test)
+
 
 ## indy_description
 
@@ -63,25 +65,15 @@ rosdep install -r --from-paths src -i -y --rosdistro ${ROS_DISTRO}
 colcon build
 ```
 
+## Build and Test
 
+```sh
+# Build
+colcon_cd
+rosdep install -r --from-paths src -i -y --rosdistro ${ROS_DISTRO}
+colcon build --symlink-install --packages-select <package_name>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- rosrun xacro xacro `rospack find foo`/urdf/foo.xacro > foo.urdf
-ign sdf -p foo.urdf > foo.sdf
-ign sdf -k foo.sdf
-Valid.
-ign gazebo -r foo.sdf
-
-
-https://answers.ros.org/question/387494/how-to-convert-a-gazebo-ros-system-to-ignition/ -->
+# Test
+colcon test --packages-select <package_name>
+colcon test-result --all
+```
