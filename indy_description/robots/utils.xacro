@@ -56,7 +56,7 @@
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0"/>
           <geometry>
-            <mesh filename="package://${description_pkg}/meshes/${model}/collision/${model}_${link_id}.stl"/>
+            <mesh filename="package://${description_pkg}/meshes/${model}/collision/${model}_${link_id}.obj"/>
           </geometry>
         </collision>
         <inertial>

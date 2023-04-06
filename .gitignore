@@ -304,3 +304,7 @@ AMENT_IGNORE
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,c++,cmake,git,python,ros2
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
+
+indy_description/meshes/temp*
+indy_description/meshes/decomp*
+!*.obj

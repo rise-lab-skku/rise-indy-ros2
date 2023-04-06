@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="indy">
   <!-- [ arm_id ] Namespace of the indy arm. Should be unique if multiple indy arms are used. -->
-  <!-- [ model  ] The model of the indy arm. It should be one of the folders in 'config' folder. -->
+  <!-- [ model  ] The model of the indy arm. It should be one of the folders in 'robots' folder. -->
   <xacro:macro name="indy_arm" params="arm_id:='indy' model description_pkg:='indy_description' connected_to:='' xyz:='0 0 0' rpy:='0 0 0'">
 
     <!-- OPTIONAL: Add a joint between the arm and the connected_to link -->
