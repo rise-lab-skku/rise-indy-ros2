@@ -79,7 +79,7 @@ def test_xacro_parsing():
 
     for model in model_list:
         try:
-            xacro.process_file(xacro_file, mappings={"model": model, "use_fake_hardware": False})
+            xacro.process_file(xacro_file, mappings={"model": model, "use_fake_hardware": "False"})
         except xml.parsers.expat.ExpatError as e:
             assert False, f"Xacro parsing failed. Model: {model}, Error: {e}"
 
