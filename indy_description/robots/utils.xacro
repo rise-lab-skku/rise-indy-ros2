@@ -16,9 +16,10 @@
   <!-- ========================================================== -->
 
 
-  <xacro:macro name="set_property_if_joint_exist" params="joint_id property_name">
+  <xacro:macro name="set_property_if_joint_exist" params="description_pkg:=^ joint_id property_name">
 
-    <xacro:property name="kinematics_dict" value="${xacro.load_yaml(model + '/kinematics.yaml')['kinematics']}"/>
+    <xacro:property name="config_dir" value="$(find ${description_pkg})/robots/${model}"/>
+    <xacro:property name="kinematics_dict" value="${xacro.load_yaml(config_dir + '/kinematics.yaml')['kinematics']}"/>
     <xacro:property name="key" value="joint${joint_id}"/>
 
     <xacro:if value="${key in kinematics_dict}">
@@ -41,7 +42,8 @@
   <xacro:macro name="indy_link" params="arm_id:=^ model:=^ description_pkg:=^ link_id color when:=true">
     <xacro:if value="${when}">
 
-      <xacro:property name="physical_parameters" value="${xacro.load_yaml(model + '/physical_parameters.yaml')['inertia_parameters']}"/>
+      <xacro:property name="config_dir" value="$(find ${description_pkg})/robots/${model}"/>
+      <xacro:property name="physical_parameters" value="${xacro.load_yaml(config_dir + '/physical_parameters.yaml')['inertia_parameters']}"/>
       <xacro:property name="link_mass" value="${physical_parameters['link' + str(link_id) + '_mass']}"/>
       <xacro:property name="link_inertia" value="${physical_parameters['link' + str(link_id)]}"/>
 
@@ -74,8 +76,9 @@
   <xacro:macro name="indy_joint" params="arm_id:=^ model:=^ description_pkg:=^ joint_id when:=true">
     <xacro:if value="${when}">
 
-      <xacro:property name="joint_origin" value="${xacro.load_yaml(model + '/kinematics.yaml')['kinematics']['joint' + str(joint_id)]}"/>
-      <xacro:property name="joint_limit" value="${xacro.load_yaml(model + '/joint_limits.yaml')['joint_limits']['joint' + str(joint_id)]}"/>
+      <xacro:property name="config_dir" value="$(find ${description_pkg})/robots/${model}"/>
+      <xacro:property name="joint_origin" value="${xacro.load_yaml(config_dir + '/kinematics.yaml')['kinematics']['joint' + str(joint_id)]}"/>
+      <xacro:property name="joint_limit" value="${xacro.load_yaml(config_dir + '/joint_limits.yaml')['joint_limits']['joint' + str(joint_id)]}"/>
 
       <joint name="${arm_id}_joint${joint_id}" type="revolute">
         <parent link="${arm_id}_link${joint_id}"/>

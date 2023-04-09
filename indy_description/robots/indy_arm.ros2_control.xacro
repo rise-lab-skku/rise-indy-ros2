@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="indy_arm_ros2_control" params="ns model description_pkg:='indy_description'  use_fake_hardware:=^|false fake_sensor_commands:=^|false">
+  <xacro:macro
+    name="indy_arm_ros2_control"
+    params="ns
+            model
+            description_pkg:='indy_description'
+            target_system:='fake_hardware'
+            fake_sensor_commands:=^|false">
     <ros2_control name="IndyHardwareInterface" type="system">
 
       <hardware>
-        <xacro:if value="${use_fake_hardware}">
+        <xacro:if value="${target_system == 'real_hardware'}">
+          <!-- TODO indy_hardware plugin is not yet implemented -->
+          <!-- <plugin>indy_hardware/IndyHardwareInterface</plugin> -->
+        </xacro:if>
+        <xacro:if value="${target_system == 'fake_hardware'}">
           <plugin>fake_components/GenericSystem</plugin>
           <param name="fake_sensor_commands">${fake_sensor_commands}</param>
           <param name="state_following_offset">0.0</param>
         </xacro:if>
-        <xacro:unless value="${use_fake_hardware}">
-          <!-- TODO indy_hardware plugin is not yet implemented -->
-          <!-- <plugin>indy_hardware/IndyHardwareInterface</plugin> -->
-        </xacro:unless>
+        <xacro:if value="${target_system == 'gazebo'}">
+          <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </xacro:if>
+        <xacro:if value="${target_system not in ['real_hardware', 'fake_hardware', 'gazebo']}">
+          <xacro:error text="Unknown target system: '${target_system}'"/>
+        </xacro:if>
       </hardware>
 
-      <xacro:macro name="configure_joint" params="ns:=^ model:=^ joint_id initial_position when:=true">
+      <xacro:macro name="configure_joint" params="ns:=^ model:=^ description_pkg:=^ joint_id initial_position when:=true">
         <xacro:if value="${when}">
-          <xacro:property name="joint_limit" value="${xacro.load_yaml(model + '/joint_limits.yaml')['joint_limits']['joint' + str(joint_id)]}"/>
+          <xacro:property name="config_dir" value="$(find ${description_pkg})/robots/${model}"/>
+          <xacro:property name="joint_limit" value="${xacro.load_yaml(config_dir + '/joint_limits.yaml')['joint_limits']['joint' + str(joint_id)]}"/>
           <joint name="${ns}_joint${joint_id}">
             <param name="initial_position">${initial_position}</param>
             <command_interface name="position">

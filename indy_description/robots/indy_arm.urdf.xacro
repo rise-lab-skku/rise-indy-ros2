@@ -5,16 +5,26 @@
   <xacro:arg name="arm_id" default="indy"/>    <!-- Name of this indy (used as joint name prefix) -->
   <xacro:arg name="model" default="indy7"/>    <!-- Model of the indy arm -->
   <xacro:arg name="connected_to" default=""/>  <!-- Link to which the indy arm is connected to -->
-  <xacro:arg name="use_fake_hardware" default="true"/>
+
+  <!-- ROS2 control parameters
+  Available target systems are
+    - real_hardware
+    - fake_hardware
+    - gazebo (for Gazebo Fortress or later)
+  -->
+  <xacro:arg name="target_system" default="fake_hardware"/>
   <xacro:arg name="fake_sensor_commands" default="true"/>
 
   <!-- Include the model -->
-  <!-- <xacro:include filename="$(find indy_description)/robots/test.xacro"/> -->
   <xacro:include filename="$(find indy_description)/robots/indy_arm.xacro"/>
   <xacro:indy_arm arm_id="$(arg arm_id)" model="$(arg model)" connected_to="$(arg connected_to)"/>
 
   <!-- Include the ros2_control plugin -->
   <xacro:include filename="$(find indy_description)/robots/indy_arm.ros2_control.xacro"/>
-  <xacro:indy_arm_ros2_control ns="$(arg arm_id)" model="$(arg model)" use_fake_hardware="$(arg use_fake_hardware)" fake_sensor_commands="$(arg fake_sensor_commands)"/>
+  <xacro:indy_arm_ros2_control
+    ns="$(arg arm_id)"
+    model="$(arg model)"
+    target_system="$(arg target_system)"
+    fake_sensor_commands="$(arg fake_sensor_commands)"/>
 
 </robot>
