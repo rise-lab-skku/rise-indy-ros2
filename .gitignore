@@ -308,3 +308,4 @@ AMENT_IGNORE
 indy_description/meshes/temp*
 indy_description/meshes/decomp*
 !*.obj
+temp
