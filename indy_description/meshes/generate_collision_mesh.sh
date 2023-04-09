@@ -18,10 +18,12 @@ hull_param=0
 # Good value for the minimum edge size is different for each mesh
 # Try the values between 1 ~ 30. Too small or too large values may lose details.
 #   ***>> THIS PARAMETER IS IMPORTANT <<***
-minedge_param=15
+minedge_param=15  # link0, 1, 2, 3, 5, 6
+# minedge_param=6  # link4
 
 # Default value of the voxel resolution
-voxel_param=100000
+voxel_param=100000  # Good for others
+# voxel_param=1000000  # Good for link2
 
 # Default value of the maximum number of vertices
 max_vertices=128
@@ -73,9 +75,13 @@ meshlabserver -i "$input_file" -o "temp_${input_filename}.obj"
 "${testvhacd_executable}" "temp_${input_filename}.obj" -h "$hull_param" -l "$minedge_param" -r "$voxel_param" -v "$max_vertices" -e 0.001
 
 # Rename the output file
-mv decomp.obj "${input_filename}.obj"
+# mv decomp.obj "${input_filename}.obj"
+# mv decomp.stl "${input_filename}.stl"
+
+# ASCII STL to binary STL
+meshlabserver -i decomp.stl -o "${input_filename}.stl"
 
 # Remove unnecessary files
-rm "temp_${input_filename}.obj" decomp.stl # decomp.mtl
+rm "temp_${input_filename}.obj" # decomp.obj decomp.stl decomp.mtl
 
 echo "Collision mesh generated: ${input_filename}.obj"

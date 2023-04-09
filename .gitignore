@@ -305,7 +305,7 @@ AMENT_IGNORE
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
+!*.obj
 indy_description/meshes/temp*
 indy_description/meshes/decomp*
-!*.obj
 temp

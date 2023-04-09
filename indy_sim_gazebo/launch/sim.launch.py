@@ -28,7 +28,7 @@
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler, TimerAction
 from launch.event_handlers import OnProcessStart
 from launch.substitutions import LaunchConfiguration, Command, FindExecutable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -58,12 +58,12 @@ def generate_launch_description():
     arm_id = LaunchConfiguration("arm_id")
     model = LaunchConfiguration("model")
 
-    # Node: robot_state_publisher
+    ###### Node:robot_state_publisher (Load robot model)
     xacro_path = os.path.join(pkg_indy_sim_gazebo, "models", "indy.xacro")
     xacro_options = [" arm_id:=", arm_id, " model:=", model]
     robot_description = Command([FindExecutable(name="xacro"), " ", xacro_path] + xacro_options)
 
-    # Gazebo
+    ###### Gazebo
     world = os.path.join(pkg_indy_sim_gazebo, "worlds", "empty.sdf")
     gz_spawn_entity = Node(
         package="ros_gz_sim",
@@ -87,7 +87,20 @@ def generate_launch_description():
         output="screen",
     )
 
-    # ROS2 control
+    ###### ROS2 control
+    # robot_controllers = PathJoinSubstitution(
+    #     [
+    #         FindPackageShare("ros2_control_demo_example_1"),
+    #         "config",
+    #         "rrbot_controllers.yaml",
+    #     ]
+    # )
+    # control_node = Node(
+    #     package="controller_manager",
+    #     executable="ros2_control_node",
+    #     parameters=[{"robot_description": robot_description}, robot_controllers],
+    #     output="both",
+    # )
     # load_joint_state_broadcaster = ExecuteProcess(
     #     cmd=["ros2", "control", "load_controller", "--set-state", "active", "joint_state_broadcaster"],
     #     output="screen",
@@ -97,12 +110,13 @@ def generate_launch_description():
     #     output="screen",
     # )
 
-    # Node:rviz2
+    ###### Node:rviz2
     rviz_config = os.path.join(pkg_indy_sim_gazebo, "rviz", "sim.rviz")
     rviz = Node(
         package="rviz2",
         executable="rviz2",
         arguments=["-d", rviz_config],
+        output="log",
     )
 
     return LaunchDescription(
@@ -127,9 +141,10 @@ def generate_launch_description():
                 launch_arguments={"gz_args": f"-r {world}"}.items(),
                 # See `gz sim --help` for more options
             ),
-            gz_spawn_entity,
+            TimerAction(period=2.0, actions=[gz_spawn_entity]),
             RegisterEventHandler(event_handler=OnProcessStart(target_action=gz_spawn_entity, on_start=[gz_bridge])),
             ###### ROS2 control
+            # control_node,
             # RegisterEventHandler(
             #     event_handler=OnProcessExit(
             #         target_action=gz_spawn_entity,
@@ -142,7 +157,7 @@ def generate_launch_description():
             #         on_exit=[load_joint_trajectory_controller],
             #     )
             # ),
-            ###### Rviz
+            ###### Node:rviz2
             RegisterEventHandler(event_handler=OnProcessStart(target_action=gz_bridge, on_start=[rviz])),
         ]
     )

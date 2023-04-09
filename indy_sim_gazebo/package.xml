@@ -10,6 +10,11 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <depend>indy_description</depend>
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+  <depend>gz_ros2_control</depend>
+
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 

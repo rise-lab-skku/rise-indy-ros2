@@ -60,7 +60,7 @@ alias TestVHACD='${YOUR_GIT_DIR}/v-hacd/app/build/TestVHACD'
 sudo apt install meshlab
 ```
 
-You can create a collision mesh `*.obj` from a visual mesh `*.stl` using the following commands:
+You can create a collision mesh from a visual mesh using the following commands:
 
 ```sh
 # Convert STL to Wavefront OBJ
@@ -68,6 +68,9 @@ meshlabserver -i <visual_mesh.stl> -o <wavefront.obj>
 
 # Approximate convex decomposition
 TestVHACD <wavefront.obj> -h <n> -l 5
+
+# ASCII STL to binary STL
+meshlabserver -i <decomp.stl> -o <collision_mesh.stl>
 ```
 
 You can also use `generate_collision_mesh.sh` in the `meshes` directory for convenience.
