@@ -53,14 +53,27 @@ def generate_launch_description():
         default_value="",
         description='Link name to which the arm is connected. Example: "world" or "base_link"',
     )
+    target_system_arg = DeclareLaunchArgument(
+        "target_system",
+        default_value="fake_hardware",
+        description='Target system: "real_hardware", "fake_hardware", or "gazebo"',
+    )
+    fake_sensor_commands_arg = DeclareLaunchArgument(
+        "fake_sensor_commands",
+        default_value="true",
+        description="Enable fake sensor values for offline testing of controllers. Only valid when target_system is set to 'fake_hardware'.",
+    )
+    use_sim_time_arg = DeclareLaunchArgument(
+        "use_sim_time",
+        default_value="false",
+        description="Use simulation time. Only valid when target_system is set to 'gazebo'.",
+    )
     arm_id = LaunchConfiguration("arm_id")
     model = LaunchConfiguration("model")
     connected_to = LaunchConfiguration("connected_to")
-
-    # "real_hardware", "fake_hardware", or "gazebo"
-    target_system = LaunchConfiguration("target_system", default="fake_hardware")
-    fake_sensor_commands = LaunchConfiguration("fake_sensor_commands", default="true")
-    use_sim_time = LaunchConfiguration("use_sim_time", default="false")
+    target_system = LaunchConfiguration("target_system")
+    fake_sensor_commands = LaunchConfiguration("fake_sensor_commands")
+    use_sim_time = LaunchConfiguration("use_sim_time")
 
     # Node: robot_state_publisher
     xacro_path = os.path.join(pkg_indy_description, "robots", "indy_arm.urdf.xacro")
@@ -79,11 +92,14 @@ def generate_launch_description():
             arm_id_arg,
             model_arg,
             connected_to_arg,
+            target_system_arg,
+            fake_sensor_commands_arg,
+            use_sim_time_arg,
             Node(  # TF broadcaster
                 package="robot_state_publisher",
                 executable="robot_state_publisher",
                 name="robot_state_publisher",
-                output="screen",
+                output="both",
                 parameters=[
                     {
                         "use_sim_time": use_sim_time,
