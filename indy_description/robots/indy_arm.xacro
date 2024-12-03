@@ -35,5 +35,13 @@
     <xacro:indy_joint joint_id="5"/>
     <xacro:indy_joint joint_id="6" when="${joint6_exist}"/>
 
+    <!-- flange -->
+    <xacro:if value="${joint6_exist}">
+      <xacro:indy_flange parent_link="${arm_id}_link7"/>
+    </xacro:if>
+    <xacro:unless value="${joint6_exist}">
+      <xacro:indy_flange parent_link="${arm_id}_link6"/>
+    </xacro:unless>
+
   </xacro:macro>
 </robot>
