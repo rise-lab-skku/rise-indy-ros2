@@ -17,7 +17,7 @@ def generate_launch_description():
     )
     model_arg = DeclareLaunchArgument(
         'model',
-        default_value="indy7",
+        default_value="indyrp2_v2",
         description='Robot model should be the folder name under "robots" and "meshes" folder. Example: "indy7" or "indyrp2_v2"'
     )
     # prefix_arg = DeclareLaunchArgument(
@@ -39,11 +39,11 @@ def generate_launch_description():
     return LaunchDescription([
         arm_id_arg,
         model_arg,
-        Node(
-            package='joint_state_publisher_gui',
-            executable='joint_state_publisher_gui',
-            name='joint_state_publisher_gui',
-        ),
+        # Node(
+        #     package='joint_state_publisher_gui',
+        #     executable='joint_state_publisher_gui',
+        #     name='joint_state_publisher_gui',
+        # ),
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
