@@ -95,13 +95,13 @@
   </xacro:macro>
 
 
-  <xacro:macro name="indy_flange" params="arm_id:=^ model:=^ parent_link">
-    <link name="${arm_id}_flange"/>
+  <xacro:macro name="indy_flange_nrmkapi" params="arm_id:=^ model:=^ parent_link">
+    <link name="${arm_id}_flange_nrmkapi"/>
 
     <xacro:property name="joint_origin" value="${xacro.load_yaml(model + '/kinematics.yaml')['kinematics']['flange']}"/>
     <joint name="${arm_id}_joint_flange" type="fixed">
       <parent link="${parent_link}"/>
-      <child link="${arm_id}_flange"/>
+      <child link="${arm_id}_flange_nrmkapi"/>
       <origin
         xyz="${joint_origin['x']} ${joint_origin['y']} ${joint_origin['z']}"
         rpy="${joint_origin['roll']} ${joint_origin['pitch']} ${joint_origin['yaw']}"/>

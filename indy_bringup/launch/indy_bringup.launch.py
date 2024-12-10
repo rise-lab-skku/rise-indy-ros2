@@ -32,8 +32,9 @@ ARGUMENTS = [
     )
 ]
 
+
 def generate_launch_description():
-    description_path = get_package_share_directory('indy_description')
+    description_path = get_package_share_directory("indy_description")
 
     def add_robot_ip(context, *args, **kwargs):
         robot_ip = ROBOT_IPS.get(
@@ -44,8 +45,12 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource(
                     [description_path, "/launch/visualize_indy.launch.py"]
                 ),
-                launch_arguments={"arm_id": "indy",
-                                  "model": ROBOT_MODELS.get(LaunchConfiguration("robot_name").perform(context))}.items(),
+                launch_arguments={
+                    "arm_id": "indy",
+                    "model": ROBOT_MODELS.get(
+                        LaunchConfiguration("robot_name").perform(context)
+                    ),
+                }.items(),
             ),
             Node(
                 package="indy_bringup",
@@ -54,14 +59,15 @@ def generate_launch_description():
                 output="screen",
                 parameters=[{"robot_ip": robot_ip}],
                 remappings=[],
-            )]
+            ),
+        ]
 
     # indy_description = IncludeLaunchDescription(
     #             PythonLaunchDescriptionSource(
     #                 [description_path, "/launch/visualize_indy.launch.py"]
     #             )
     #         )
-    
+
     # joint_state_publisher = Node(
     #             package="indy_bringup",
     #             executable="joint_publisher",
@@ -70,7 +76,7 @@ def generate_launch_description():
     #             parameters=[],
     #             remappings=[],
     #         )
-    
+
     ld = LaunchDescription(ARGUMENTS)
     # ld.add_action(indy_description)
     # ld.add_action(joint_state_publisher)
