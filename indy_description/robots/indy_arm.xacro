@@ -37,10 +37,10 @@
 
     <!-- flange -->
     <xacro:if value="${joint6_exist}">
-      <xacro:indy_flange_nrmkapi parent_link="${arm_id}_link7"/>
+      <xacro:indy_flange parent_link="${arm_id}_link7"/>
     </xacro:if>
     <xacro:unless value="${joint6_exist}">
-      <xacro:indy_flange_nrmkapi parent_link="${arm_id}_link6"/>
+      <xacro:indy_flange parent_link="${arm_id}_link6"/>
     </xacro:unless>
 
   </xacro:macro>
