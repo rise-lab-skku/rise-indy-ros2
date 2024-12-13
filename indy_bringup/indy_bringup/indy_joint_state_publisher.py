@@ -66,7 +66,7 @@ class IndyJointStatePublisher(Node):
 
     def publish_joint_states(self, t):
         self.joint_state_msg.header.stamp = t
-        self.joint_state_msg.position = self.joint_positions
+        self.joint_state_msg.position = self.joint_positions.tolist()
         self.joint_state_publisher.publish(self.joint_state_msg)
 
     def publish_tf(self, t, trans, quat):

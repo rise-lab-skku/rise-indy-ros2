@@ -42,11 +42,11 @@ def generate_launch_description():
         [
             arm_id_arg,
             model_arg,
-            # Node(
-            #     package='joint_state_publisher_gui',
-            #     executable='joint_state_publisher_gui',
-            #     name='joint_state_publisher_gui',
-            # ),
+            Node(
+                package='joint_state_publisher_gui',
+                executable='joint_state_publisher_gui',
+                name='joint_state_publisher_gui',
+            ),
             Node(
                 package="robot_state_publisher",
                 executable="robot_state_publisher",
