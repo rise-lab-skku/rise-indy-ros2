@@ -51,7 +51,8 @@ def generate_launch_description():
                 package="joint_state_publisher_gui",
                 executable="joint_state_publisher_gui",
                 name="joint_state_publisher_gui",
-                condition=IfCondition(use_fake_hardware),  # ⬅ 핵심
+                condition=IfCondition(use_fake_hardware), 
+                parameters=[{"robot_description": robot_description}]
             ),
             Node(
                 package="robot_state_publisher",

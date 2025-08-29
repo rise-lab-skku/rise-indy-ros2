@@ -1,0 +1,31 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+
+    indy_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+indy_arm_controller:
+  ros__parameters:
+    command_interfaces:
+      - effort
+    state_interfaces:
+      - position
+      - velocity
+    joints:
+      - indy_joint0
+      - indy_joint1
+      - indy_joint2
+      - indy_joint3
+      - indy_joint4
+      - indy_joint5
+    gains:
+      indy_joint0: { p: 600., d: 30., i: 0., i_clamp: 1. }
+      indy_joint1: { p: 600., d: 30., i: 0., i_clamp: 1. }
+      indy_joint2: { p: 600., d: 30., i: 0., i_clamp: 1. }
+      indy_joint3: { p: 600., d: 30., i: 0., i_clamp: 1. }
+      indy_joint4: { p: 600., d: 30., i: 0., i_clamp: 1. }
+      indy_joint5: { p: 250., d: 10., i: 0., i_clamp: 1. }

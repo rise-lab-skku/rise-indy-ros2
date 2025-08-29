@@ -22,7 +22,7 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "joint_state_publisher = indy_bringup.indy_joint_state_publisher:main",
+            "indy_joint_state_publisher = indy_bringup.indy_joint_state_publisher:main",
         ],
     },
 )

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="indy">
+
+  <xacro:arg name="arm_id" default="indy"/> <!-- Name of this indy -->
+
+  <xacro:property name="arm_id" value="$(arg arm_id)"/>
+
+  <xacro:include filename="$(find indy_moveit_config)/srdf/indy_arm.xacro"/>
+  <xacro:indy_arm arm_id="${arm_id}"/>
+
+</robot>
