@@ -6,7 +6,7 @@
     <xacro:group_definition arm_id="${arm_id}" group_name="${arm_id}_arm" tip_link="${arm_id}_flange"/>
 
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="${arm_id}_link0"/>
-    <!-- <disable_collisions link1="${arm_id}_link0" link2="${arm_id}_link1" reason="Adjacent"/>
+    <disable_collisions link1="${arm_id}_link0" link2="${arm_id}_link1" reason="Adjacent"/>
     <disable_collisions link1="${arm_id}_link0" link2="${arm_id}_link2" reason="Never"/>
     <disable_collisions link1="${arm_id}_link0" link2="${arm_id}_link3" reason="Never"/>
     <disable_collisions link1="${arm_id}_link0" link2="${arm_id}_link4" reason="Never"/>
@@ -25,6 +25,6 @@
     <disable_collisions link1="${arm_id}_link4" link2="${arm_id}_flange" reason="Never"/>
     <disable_collisions link1="${arm_id}_link5" link2="${arm_id}_link6" reason="Adjacent"/>
     <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_flange" reason="Adjacent"/>
-    <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_flange" reason="Default"/> -->
+    <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_flange" reason="Default"/>
   </xacro:macro>
 </robot>

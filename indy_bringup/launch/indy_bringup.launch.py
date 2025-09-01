@@ -7,6 +7,7 @@ from launch.actions import (
     DeclareLaunchArgument,
     IncludeLaunchDescription,
     OpaqueFunction,
+    LogInfo,
 )
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
@@ -38,21 +39,38 @@ ARGUMENTS = [
         default_value="true",
         description="Use fake hardware; when true, run joint_state_publisher_gui.",
     ),
+    DeclareLaunchArgument(
+        "viz",
+        default_value="true",
+        description="Use RViz visualization.",
+    ),
 ]
 
 
 def generate_launch_description():
     description_path = get_package_share_directory("indy_description")
-    
+
     def add_robot_ip(context, *args, **kwargs):
-        robot_ip = ROBOT_IPS.get(
-            LaunchConfiguration("robot_name").perform(context), "0.0.0.0"
+        robot_name = LaunchConfiguration("robot_name").perform(context)
+        robot_ip = ROBOT_IPS.get(robot_name, "0.0.0.0")
+        model = ROBOT_MODELS.get(robot_name)
+        robot_description = Command(
+            [
+                "xacro ",
+                PathJoinSubstitution(
+                    [
+                        FindPackageShare("indy_description"),
+                        "robots",
+                        "indy_arm.urdf.xacro",
+                    ]
+                ),
+                " model:=indy7_v2 arm_id:=indy",
+            ]
         )
-        robot_description = Command([
-            "xacro ", PathJoinSubstitution([FindPackageShare("indy_description"), "robots", "indy_arm.urdf.xacro"]),
-            " model:=indy7_v2 arm_id:=indy"
-        ])
         return [
+            LogInfo(msg=f"[indy_bringup] robot_name={robot_name}"),
+            LogInfo(msg=f"[indy_bringup] robot_ip={robot_ip}"),
+            LogInfo(msg=f"[indy_bringup] model={model}"),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
                     [description_path, "/launch/visualize_indy.launch.py"]
@@ -63,6 +81,7 @@ def generate_launch_description():
                         LaunchConfiguration("robot_name").perform(context)
                     ),
                     "use_fake_hardware": LaunchConfiguration("use_fake_hardware"),
+                    "viz": LaunchConfiguration("viz"),
                 }.items(),
             ),
             Node(
@@ -71,21 +90,11 @@ def generate_launch_description():
                 name="indy_joint_state_publisher",
                 output="screen",
                 parameters=[{"robot_ip": robot_ip}],
-                condition=UnlessCondition(LaunchConfiguration("use_fake_hardware")), 
+                condition=UnlessCondition(LaunchConfiguration("use_fake_hardware")),
                 remappings=[],
             ),
         ]
 
-    # joint_state_publisher = Node(
-    #     package="indy_bringup",
-    #     executable="indy_joint_state_publisher",
-    #     name="indy_joint_state_publisher",
-    #     output="screen",
-    #     parameters=[],
-    #     remappings=[],
-    # )
-
     ld = LaunchDescription(ARGUMENTS)
-    # ld.add_action(joint_state_publisher)
     ld.add_action(OpaqueFunction(function=add_robot_ip))
     return ld
