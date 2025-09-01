@@ -7,11 +7,30 @@
   <xacro:arg name="connected_to" default=""/>  <!-- Link to which the indy arm is connected to -->
   <xacro:arg name="use_fake_hardware" default="true"/>
   <xacro:arg name="fake_sensor_commands" default="true"/>
+  <xacro:arg name="use_hand" default="false"/>
+
 
   <!-- Include the model -->
   <!-- <xacro:include filename="$(find indy_description)/robots/test.xacro"/> -->
   <xacro:include filename="$(find indy_description)/robots/indy_arm.xacro"/>
   <xacro:indy_arm arm_id="$(arg arm_id)" model="$(arg model)" connected_to="$(arg connected_to)"/>
+
+  <xacro:if value="$(arg use_hand)">
+    <xacro:include filename="$(find amm_hand_v2_description)/urdf/hand_v2_0_macro.xacro"/>
+    <xacro:hand_v2_0
+      prefix=""
+      joint_limits="${xacro.load_yaml('$(find amm_hand_v2_description)/urdf/joint_limits.yaml')}"
+      inertials="${xacro.load_yaml('$(find amm_hand_v2_description)/urdf/inertials.yaml')}"
+      simplified="false"
+      isaac_gym="false"
+      palm_is_base="false"
+    />
+    <joint name="hand_mount" type="fixed">
+      <parent link="indy_flange"/>
+      <child  link="hand_base"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/> 
+    </joint>
+</xacro:if>
 
   <!-- Include the ros2_control plugin -->
   <xacro:include filename="$(find indy_description)/robots/indy_arm.ros2_control.xacro"/>

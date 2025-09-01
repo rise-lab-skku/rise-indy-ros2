@@ -44,6 +44,11 @@ ARGUMENTS = [
         default_value="true",
         description="Use RViz visualization.",
     ),
+    DeclareLaunchArgument(
+        "use_hand",
+        default_value="false",
+        description="Use hand",
+    ),
 ]
 
 
@@ -54,19 +59,7 @@ def generate_launch_description():
         robot_name = LaunchConfiguration("robot_name").perform(context)
         robot_ip = ROBOT_IPS.get(robot_name, "0.0.0.0")
         model = ROBOT_MODELS.get(robot_name)
-        robot_description = Command(
-            [
-                "xacro ",
-                PathJoinSubstitution(
-                    [
-                        FindPackageShare("indy_description"),
-                        "robots",
-                        "indy_arm.urdf.xacro",
-                    ]
-                ),
-                " model:=indy7_v2 arm_id:=indy",
-            ]
-        )
+        
         return [
             LogInfo(msg=f"[indy_bringup] robot_name={robot_name}"),
             LogInfo(msg=f"[indy_bringup] robot_ip={robot_ip}"),
@@ -80,6 +73,8 @@ def generate_launch_description():
                     "model": ROBOT_MODELS.get(
                         LaunchConfiguration("robot_name").perform(context)
                     ),
+                    "robot_ip": robot_ip,
+                    "use_hand": LaunchConfiguration("use_hand"),
                     "use_fake_hardware": LaunchConfiguration("use_fake_hardware"),
                     "viz": LaunchConfiguration("viz"),
                 }.items(),

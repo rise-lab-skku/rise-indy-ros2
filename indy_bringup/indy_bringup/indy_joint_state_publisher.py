@@ -4,7 +4,7 @@ from sensor_msgs.msg import JointState
 import time
 import sys
 sys.path.append("./")
-from neuromeka import IndyDCP3
+from neuromeka import IndyDCP3 #TODO: neuromeka 패키지 경로 설정
 import numpy as np
 
 DEG2RAD = 0.017453292519943295
@@ -23,7 +23,7 @@ class IndyJointStatePublisher(Node):
 
         self.joint_num = len(self.indy.get_control_data()['q'])
         self.joint_positions = [0.0] * (self.joint_num)
-        self.joint_names = [f'indy_joint{i}' for i in range(self.joint_num)] # + ['indy_flange']
+        self.joint_names = [f'indy_joint{i}' for i in range(self.joint_num)]
         self.timer = self.create_timer(0.05, self.publish_joint_states)
 
     def publish_joint_states(self):
