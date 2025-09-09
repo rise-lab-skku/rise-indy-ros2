@@ -54,12 +54,13 @@ ARGUMENTS = [
 
 def generate_launch_description():
     description_path = get_package_share_directory("indy_description")
+    amm_controller_path = get_package_share_directory("amm_controller")
 
     def add_robot_ip(context, *args, **kwargs):
         robot_name = LaunchConfiguration("robot_name").perform(context)
         robot_ip = ROBOT_IPS.get(robot_name, "0.0.0.0")
         model = ROBOT_MODELS.get(robot_name)
-        
+
         return [
             LogInfo(msg=f"[indy_bringup] robot_name={robot_name}"),
             LogInfo(msg=f"[indy_bringup] robot_ip={robot_ip}"),
@@ -87,6 +88,11 @@ def generate_launch_description():
                 parameters=[{"robot_ip": robot_ip}],
                 condition=UnlessCondition(LaunchConfiguration("use_fake_hardware")),
                 remappings=[],
+            ),
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    [amm_controller_path, "/launch/handeye_calibration.launch.py"]
+                ),
             ),
         ]
 
