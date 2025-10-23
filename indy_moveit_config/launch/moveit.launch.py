@@ -6,6 +6,7 @@ ROBOT_MODELS using LaunchConfiguration.perform(context).
 It also prints robot_name / model to the terminal and wires up MoveIt,
 ros2_control, RViz, and the bringup include.
 """
+
 import os
 import yaml
 
@@ -29,11 +30,12 @@ from launch.substitutions import (
 from launch_ros.actions import Node
 
 
+# (model, dof)
 ROBOT_MODELS = {
-    "Indy_RB2": "indy7",
-    "Indy_RC1": "indy7",
-    "Moby": "indyrp2_v2",
-    "Nsquare": "indy7_v2",
+    "Indy_RB2": ("indy7", "6"),
+    "Indy_RC1": ("indy7", "6"),
+    "Moby": ("indyrp2_v2", "7"),
+    "Nsquare": ("indy7_v2", "6"),
 }
 
 
@@ -53,43 +55,19 @@ def _setup(context, *args, **kwargs):
     use_fake = LaunchConfiguration("use_fake_hardware").perform(context)
     viz = LaunchConfiguration("viz").perform(context)
 
-    model = ROBOT_MODELS.get(robot_name, "indy7")
+    model, dof = ROBOT_MODELS.get(robot_name, ("indy7", "6"))
 
     # ---- robot_description (URDF) ----
-    indy_xacro_file = os.path.join(
-        get_package_share_directory("indy_description"),
-        "robots",
-        "indy_arm.urdf.xacro",
-    )
+    indy_xacro_file = os.path.join(get_package_share_directory("indy_description"), "robots", "indy_arm.urdf.xacro")
     robot_description_config = Command(
-        [
-            FindExecutable(name="xacro"),
-            " ",
-            indy_xacro_file,
-            " model:=",
-            model,
-            " use_fake_hardware:=",
-            use_fake,
-        ]
+        [FindExecutable(name="xacro"), " ", indy_xacro_file, " model:=", model, " use_fake_hardware:=", use_fake]
     )
     robot_description = {"robot_description": robot_description_config}
 
     # ---- robot_description_semantic (SRDF) ----
-    indy_semantic_xacro_file = os.path.join(
-        get_package_share_directory("indy_moveit_config"),
-        "srdf",
-        "indy_arm.srdf.xacro",
-    )
-    robot_description_semantic_config = Command(
-        [
-            FindExecutable(name="xacro"),
-            " ",
-            indy_semantic_xacro_file,
-        ]
-    )
-    robot_description_semantic = {
-        "robot_description_semantic": robot_description_semantic_config
-    }
+    indy_semantic_xacro_file = os.path.join(get_package_share_directory("indy_moveit_config"), "srdf", "indy_arm.srdf.xacro")
+    robot_description_semantic_config = Command([FindExecutable(name="xacro"), " ", indy_semantic_xacro_file, " dof:=", dof])
+    robot_description_semantic = {"robot_description_semantic": robot_description_semantic_config}
 
     # ---- Kinematics / OMPL / Controllers ----
     kinematics_yaml = load_yaml("indy_moveit_config", "config/kinematics.yaml")
@@ -112,9 +90,7 @@ def _setup(context, *args, **kwargs):
     if ompl_planning_yaml:
         ompl_planning_pipeline_config["move_group"].update(ompl_planning_yaml)
 
-    moveit_simple_controllers_yaml = load_yaml(
-        "indy_moveit_config", "config/indy_controllers.yaml"
-    )
+    moveit_simple_controllers_yaml = load_yaml("indy_moveit_config", f"config/indy_{dof}dof_controllers.yaml")
     moveit_controllers = {
         "moveit_simple_controller_manager": moveit_simple_controllers_yaml,
         "moveit_controller_manager": "moveit_simple_controller_manager/MoveItSimpleControllerManager",
@@ -150,9 +126,7 @@ def _setup(context, *args, **kwargs):
         ],
     )
 
-    rviz_config = os.path.join(
-        get_package_share_directory("indy_moveit_config"), "rviz", "moveit.rviz"
-    )
+    rviz_config = os.path.join(get_package_share_directory("indy_moveit_config"), "rviz", "moveit.rviz")
     rviz_node = Node(
         package="rviz2",
         executable="rviz2",
@@ -176,9 +150,7 @@ def _setup(context, *args, **kwargs):
     )
 
     ros2_controllers_path = os.path.join(
-        get_package_share_directory("indy_moveit_config"),
-        "config",
-        "indy_ros_controllers.yaml",
+        get_package_share_directory("indy_moveit_config"), "config", f"indy_{dof}dof_ros_controllers.yaml"
     )
     ros2_control_node = Node(
         package="controller_manager",
@@ -194,10 +166,7 @@ def _setup(context, *args, **kwargs):
     for controller in ["indy_arm_controller", "joint_state_broadcaster"]:
         load_controllers.append(
             ExecuteProcess(
-                cmd=[
-                    f"ros2 run controller_manager spawner {controller} "
-                    f"--controller-manager /controller_manager"
-                ],
+                cmd=[f"ros2 run controller_manager spawner {controller} --controller-manager /controller_manager"],
                 shell=True,
                 output="screen",
             )
@@ -252,7 +221,7 @@ def generate_launch_description():
     )
     viz_arg = DeclareLaunchArgument(
         "viz",
-        default_value="true",
+        default_value="false",
         description="Launch RViz visualization",
     )
 

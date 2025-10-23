@@ -2,10 +2,12 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="indy">
 
   <xacro:arg name="arm_id" default="indy"/> <!-- Name of this indy -->
+  <xacro:arg name="dof" default="7"/> <!-- Number of degrees of freedom -->
 
   <xacro:property name="arm_id" value="$(arg arm_id)"/>
+  <xacro:property name="dof" value="$(arg dof)"/>
 
   <xacro:include filename="$(find indy_moveit_config)/srdf/indy_arm.xacro"/>
-  <xacro:indy_arm arm_id="${arm_id}"/>
+  <xacro:indy_arm arm_id="${arm_id}" dof="${dof}"/>
 
 </robot>

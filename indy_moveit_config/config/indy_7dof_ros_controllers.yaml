@@ -11,7 +11,7 @@ controller_manager:
 indy_arm_controller:
   ros__parameters:
     command_interfaces:
-      - effort
+      - position
     state_interfaces:
       - position
       - velocity
@@ -22,6 +22,7 @@ indy_arm_controller:
       - indy_joint3
       - indy_joint4
       - indy_joint5
+      - indy_joint6
     gains:
       indy_joint0: { p: 600., d: 30., i: 0., i_clamp: 1. }
       indy_joint1: { p: 600., d: 30., i: 0., i_clamp: 1. }
@@ -29,3 +30,4 @@ indy_arm_controller:
       indy_joint3: { p: 600., d: 30., i: 0., i_clamp: 1. }
       indy_joint4: { p: 600., d: 30., i: 0., i_clamp: 1. }
       indy_joint5: { p: 250., d: 10., i: 0., i_clamp: 1. }
+      indy_joint6: { p: 150., d: 10., i: 0., i_clamp: 1. }

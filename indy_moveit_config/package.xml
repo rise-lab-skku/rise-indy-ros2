@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>indy_moveit_config</name>
-  <version>0.1.8</version>
-  <description>Contains Moveit2 configuration files for Franka Emika research robots</description>
-  <maintainer email="support@franka.de">Franka Emika GmbH</maintainer>
-  <license>Apache 2.0</license>
+  <version>0.2.0</version>
+  <description>Contains Moveit2 configuration files for Neuromeka Indy robots</description>
+  <maintainer email="rise.skku@gmail.com">Rise SKKU</maintainer>
+  <license>BSD-3-Clause</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

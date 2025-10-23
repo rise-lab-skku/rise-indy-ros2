@@ -5,7 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded: ~
       Splitter Ratio: 0.5
-    Tree Height: 333
+    Tree Height: 576
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -101,6 +101,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        indy_link7:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Loop Animation: false
       Name: Trajectory
       Robot Alpha: 0.5
@@ -170,6 +175,11 @@ Visualization Manager:
             Show Trail: false
             Value: true
           indy_link6:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          indy_link7:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -244,6 +254,11 @@ Visualization Manager:
             Show Trail: false
             Value: true
           indy_link6:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          indy_link7:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -333,6 +348,11 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          indy_link7:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
         Robot Alpha: 1
         Show Robot Collision: false
         Show Robot Visual: true
@@ -355,10 +375,10 @@ Visualization Manager:
       Ty: -0.0364
       Tz: 0.0461
       Value: true
-      base: indy_link0
-      eef: indy_flange
+      base: ""
+      eef: ""
       group: indy_arm
-      image_topic: /camera/color/image_raw
+      image_topic: ""
       marker border (bits): 1
       marker separation (px): 20
       marker size (px): 200
@@ -366,13 +386,13 @@ Visualization Manager:
       markers, Y: 3
       measured marker size (m): 0.050000
       measured separation (m): 0.005000
-      object: handeye_target
-      sensor: camera_color_optical_frame
+      object: ""
+      sensor: ""
       sensor_mount_type: 1
       solver: OpenCV/Tsai1989
       target_type: HandEyeTarget/Aruco
     - Class: rviz_default_plugins/Image
-      Enabled: true
+      Enabled: false
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -384,69 +404,21 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /handeye_calibration/target_detection
-      Value: true
+      Value: false
     - Class: rviz_default_plugins/TF
-      Enabled: true
+      Enabled: false
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        camera_accel_frame:
-          Value: true
-        camera_accel_optical_frame:
-          Value: true
-        camera_color_frame:
-          Value: true
-        camera_color_optical_frame:
-          Value: true
-        camera_depth_frame:
-          Value: true
-        camera_depth_optical_frame:
-          Value: true
-        camera_gyro_frame:
-          Value: true
-        camera_gyro_optical_frame:
-          Value: true
-        camera_link:
-          Value: true
-        handeye_target:
-          Value: true
-        indy_flange:
-          Value: true
-        indy_link0:
-          Value: true
-        indy_link1:
-          Value: true
-        indy_link2:
-          Value: true
-        indy_link3:
-          Value: true
-        indy_link4:
-          Value: true
-        indy_link5:
-          Value: true
-        indy_link6:
-          Value: true
-        object_1:
-          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        indy_link0:
-          indy_link1:
-            indy_link2:
-              indy_link3:
-                indy_link4:
-                  indy_link5:
-                    indy_link6:
-                      indy_flange:
-                        camera_color_optical_frame:
-                          handeye_target:
-                            {}
+        {}
       Update Interval: 0
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -493,32 +465,32 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 3.119211196899414
+      Distance: 2.85922908782959
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.25812000036239624
-        Y: 0.04843410849571228
-        Z: 0.20135849714279175
+        X: -0.04109933227300644
+        Y: 0.009388375096023083
+        Z: 0.4378257691860199
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7253980040550232
+      Pitch: 0.6053983569145203
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.038576602935791
+      Yaw: 5.24857759475708
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
   HandEye Calibration:
     collapsed: false
-  Height: 2338
+  Height: 1376
   Hide Left Dock: false
   Hide Right Dock: true
   Image:
@@ -527,7 +499,7 @@ Window Geometry:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000005e200000886fc020000000efb0000001200530065006c0065006300740069006f006e00000001e10000009b000000b000fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000006e000002450000018200fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000003c005400720061006a006500630074006f007200790020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000007a00fffffffb000000280020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000007a00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006700000001fc000002c9000002b800fffffffb0000000a0049006d00610067006501000002bf0000026d0000004a00fffffffb0000002600480061006e0064004500790065002000430061006c006900620072006100740069006f006e0100000538000003bc000001f200ffffff000000010000010f000003abfc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003b000003ab0000013200fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d0065010000000000000450000000000000000000000aa60000088600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000005e200000506fc020000000efb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d00000307000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000003c005400720061006a006500630074006f007200790020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb000000280020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000034a000001f90000017d00fffffffb0000000a0049006d006100670065000000019a0000016e0000002800fffffffb0000002600480061006e0064004500790065002000430061006c006900620072006100740069006f006e00000002270000031c000001e100ffffff000000010000010f000003abfc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003b000003ab000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d00650100000000000004500000000000000000000003d20000050600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Tool Properties:
@@ -536,6 +508,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: true
-  Width: 4244
-  X: 140
-  Y: 54
+  Width: 2490
+  X: 70
+  Y: 27
