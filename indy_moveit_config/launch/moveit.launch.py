@@ -66,7 +66,9 @@ def _setup(context, *args, **kwargs):
 
     # ---- robot_description_semantic (SRDF) ----
     indy_semantic_xacro_file = os.path.join(get_package_share_directory("indy_moveit_config"), "srdf", "indy_arm.srdf.xacro")
-    robot_description_semantic_config = Command([FindExecutable(name="xacro"), " ", indy_semantic_xacro_file, " dof:=", dof])
+    robot_description_semantic_config = Command(
+        [FindExecutable(name="xacro"), " ", indy_semantic_xacro_file, " dof:=", dof, " hand:=", "true"]
+    )
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_config}
 
     # ---- Kinematics / OMPL / Controllers ----

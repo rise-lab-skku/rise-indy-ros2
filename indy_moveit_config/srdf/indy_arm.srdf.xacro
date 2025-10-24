@@ -3,11 +3,13 @@
 
   <xacro:arg name="arm_id" default="indy"/> <!-- Name of this indy -->
   <xacro:arg name="dof" default="7"/> <!-- Number of degrees of freedom -->
+  <xacro:arg name="hand" default="false"/> <!-- Whether the hand is attached -->
 
   <xacro:property name="arm_id" value="$(arg arm_id)"/>
   <xacro:property name="dof" value="$(arg dof)"/>
+  <xacro:property name="hand" value="$(arg hand)"/>
 
   <xacro:include filename="$(find indy_moveit_config)/srdf/indy_arm.xacro"/>
-  <xacro:indy_arm arm_id="${arm_id}" dof="${dof}"/>
+  <xacro:indy_arm arm_id="${arm_id}" dof="${dof}" hand="${hand}"/>
 
 </robot>

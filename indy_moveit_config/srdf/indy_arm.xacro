@@ -1,9 +1,13 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="indy">
-  <xacro:macro name="indy_arm" params="arm_id:='indy' dof:='7'">
+  <xacro:macro name="indy_arm" params="arm_id:='indy' dof:='7' hand:='false'">
 
     <xacro:include filename="$(find indy_moveit_config)/srdf/group_definition.xacro"/>
     <xacro:group_definition arm_id="${arm_id}" group_name="${arm_id}_arm" tip_link="${arm_id}_flange" dof="${dof}"/>
+
+    <xacro:if value="${hand}">
+        <xacro:group_definition arm_id="${arm_id}" group_name="${arm_id}_arm_hand" tip_link="hand_palm" dof="${dof}"/>
+    </xacro:if>
 
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="${arm_id}_link0"/>
     <disable_collisions link1="${arm_id}_link0" link2="${arm_id}_link1" reason="Adjacent"/>
