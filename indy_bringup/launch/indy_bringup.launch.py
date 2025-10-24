@@ -20,7 +20,7 @@ from launch_ros.substitutions import FindPackageShare
 # 로봇 이름에 따른 IP와 모델명 딕셔너리
 ROBOT_IPS = {
     "Indy_RB2": "192.168.0.81",
-    "Indy_RC1": "192.168.0.80",
+    "Indy_RC1": "192.168.0.108",
     "Moby": "192.168.214.20",
     "Nsquare": "192.168.0.83",
 }
@@ -69,8 +69,6 @@ def generate_launch_description():
         # 실행할 액션들을 담을 리스트 생성
         actions_to_execute = []
 
-        # === 단계 1: 즉시 실행 (T=0초) ===
-        # 로그 메시지와 handeye_calibration 런치 파일 포함
         actions_to_execute.extend(
             [
                 LogInfo(msg=f"[indy_bringup] robot_name={robot_name}"),
@@ -83,7 +81,6 @@ def generate_launch_description():
             ]
         )
 
-        # TimerAction을 사용하여 indy_joint_state_publisher 노드를 6초 지연 실행
         actions_to_execute.append(
             TimerAction(
                 period=1.0,
