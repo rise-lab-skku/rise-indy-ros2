@@ -24,7 +24,8 @@
     <disable_collisions link1="${arm_id}_link4" link2="${arm_id}_link6" reason="Never"/>
     <disable_collisions link1="${arm_id}_link4" link2="${arm_id}_flange" reason="Never"/>
     <disable_collisions link1="${arm_id}_link5" link2="${arm_id}_link6" reason="Adjacent"/>
-    <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_flange" reason="Adjacent"/>
-    <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_flange" reason="Default"/>
+    <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_link7" reason="Adjacent"/>
+    <disable_collisions link1="${arm_id}_link7" link2="${arm_id}_flange" reason="Adjacent"/>
+    <disable_collisions link1="${arm_id}_link7" link2="${arm_id}_flange" reason="Default"/>
   </xacro:macro>
 </robot>

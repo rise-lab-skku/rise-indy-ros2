@@ -38,7 +38,7 @@ def generate_launch_description():
     )
     viz_arg = DeclareLaunchArgument(
         "viz",
-        default_value="true",
+        default_value="ffalser",
         description="Use RViz visualization.",
     )
 
@@ -52,9 +52,7 @@ def generate_launch_description():
     use_fake_hardware = LaunchConfiguration("use_fake_hardware")
 
     xacro_options = [" arm_id:=", arm_id, " model:=", model, " use_hand:=", LaunchConfiguration("use_hand")]
-    robot_description = Command(
-        [FindExecutable(name="xacro"), " ", xacro_path] + xacro_options
-    )
+    robot_description = Command([FindExecutable(name="xacro"), " ", xacro_path] + xacro_options)
 
     return LaunchDescription(
         [

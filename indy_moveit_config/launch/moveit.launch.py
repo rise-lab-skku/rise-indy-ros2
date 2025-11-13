@@ -87,9 +87,7 @@ def _setup(context, *args, **kwargs):
             indy_semantic_xacro_file,
         ]
     )
-    robot_description_semantic = {
-        "robot_description_semantic": robot_description_semantic_config
-    }
+    robot_description_semantic = {"robot_description_semantic": robot_description_semantic_config}
 
     # ---- Kinematics / OMPL / Controllers ----
     kinematics_yaml = load_yaml("indy_moveit_config", "config/kinematics.yaml")
@@ -112,9 +110,7 @@ def _setup(context, *args, **kwargs):
     if ompl_planning_yaml:
         ompl_planning_pipeline_config["move_group"].update(ompl_planning_yaml)
 
-    moveit_simple_controllers_yaml = load_yaml(
-        "indy_moveit_config", "config/indy_controllers.yaml"
-    )
+    moveit_simple_controllers_yaml = load_yaml("indy_moveit_config", "config/indy_controllers.yaml")
     moveit_controllers = {
         "moveit_simple_controller_manager": moveit_simple_controllers_yaml,
         "moveit_controller_manager": "moveit_simple_controller_manager/MoveItSimpleControllerManager",
@@ -150,9 +146,7 @@ def _setup(context, *args, **kwargs):
         ],
     )
 
-    rviz_config = os.path.join(
-        get_package_share_directory("indy_moveit_config"), "rviz", "moveit.rviz"
-    )
+    rviz_config = os.path.join(get_package_share_directory("indy_moveit_config"), "rviz", "moveit.rviz")
     rviz_node = Node(
         package="rviz2",
         executable="rviz2",
@@ -194,10 +188,7 @@ def _setup(context, *args, **kwargs):
     for controller in ["indy_arm_controller", "joint_state_broadcaster"]:
         load_controllers.append(
             ExecuteProcess(
-                cmd=[
-                    f"ros2 run controller_manager spawner {controller} "
-                    f"--controller-manager /controller_manager"
-                ],
+                cmd=[f"ros2 run controller_manager spawner {controller} " f"--controller-manager /controller_manager"],
                 shell=True,
                 output="screen",
             )
@@ -215,7 +206,7 @@ def _setup(context, *args, **kwargs):
             "arm_id": "indy",
             "robot_name": robot_name,
             "use_fake_hardware": use_fake,
-            "viz": viz,
+            "viz": "false",
         }.items(),
     )
 
