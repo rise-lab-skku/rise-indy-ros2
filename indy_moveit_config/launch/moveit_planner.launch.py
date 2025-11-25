@@ -28,6 +28,9 @@ from launch.substitutions import (
 )
 from launch_ros.actions import Node
 
+from launch.conditions import IfCondition
+from launch.substitutions import LaunchConfiguration
+
 
 ROBOT_MODELS = {
     "Indy_RB2": "indy7",
@@ -159,6 +162,7 @@ def _setup(context, *args, **kwargs):
             ompl_planning_pipeline_config,
             kinematics_yaml,
         ],
+        condition=IfCondition(LaunchConfiguration("viz")),
     )
 
     robot_state_publisher = Node(
@@ -206,7 +210,7 @@ def _setup(context, *args, **kwargs):
             "arm_id": "indy",
             "robot_name": robot_name,
             "use_fake_hardware": use_fake,
-            "viz": viz,
+            "viz": "false",
         }.items(),
     )
 
