@@ -28,8 +28,8 @@
     <joint name="hand_mount" type="fixed">
       <parent link="indy_flange"/>
       <child  link="hand_base"/>
-      <origin xyz="0 0 0.06" rpy="0 0 ${-pi/2}"/>
-      <!-- <origin xyz="0 0 0.06" rpy="0 0 ${pi/2}"/> -->
+      <!-- <origin xyz="0 0 0.06" rpy="0 0 ${-pi/2}"/> -->
+      <origin xyz="0 0 0.06" rpy="0 0 ${pi/2}"/>
     </joint>
 </xacro:if>
 

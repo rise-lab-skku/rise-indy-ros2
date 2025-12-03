@@ -12,7 +12,7 @@
       <joint name="${arm_id}_joint3" value="${-pi/2}"/>
       <joint name="${arm_id}_joint4" value="0"/>
       <joint name="${arm_id}_joint5" value="${-pi/2}"/>
-      <joint name="${arm_id}_joint6" value="0"/>
+      <!-- <joint name="${arm_id}_joint6" value="0"/> -->
       <joint name="${arm_id}_flange" value="0"/>
     </group_state>
   </xacro:macro>
