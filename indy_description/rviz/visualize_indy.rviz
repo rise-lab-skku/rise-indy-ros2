@@ -5,8 +5,9 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /TF1/Frames1
+        - /Image2
       Splitter Ratio: 0.5088235139846802
-    Tree Height: 206
+    Tree Height: 673
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -59,309 +60,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        f1_MCP:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f1_distal_base:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f1_distal_tip:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f1_finger_tip_reference:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_finger_tip_suction:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_middle_inner:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f1_middle_outer1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f1_middle_outer2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f1_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_proximal:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f1_screw1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw1_max:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw1_min:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw1_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw2_max:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw2_min:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw2_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw3_max:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw3_min:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f1_screw3_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_MCP:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f2_distal_base:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f2_distal_tip:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f2_finger_tip_reference:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_finger_tip_suction:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_middle_inner:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f2_middle_outer1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f2_middle_outer2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f2_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_proximal:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f2_screw1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw1_max:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw1_min:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw1_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw2_max:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw2_min:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw2_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw3_max:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw3_min:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f2_screw3_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_MCP:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f3_distal_base:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f3_distal_tip:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f3_finger_tip_reference:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_finger_tip_suction:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_middle_inner:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f3_middle_outer1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f3_middle_outer2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f3_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_proximal:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        f3_screw1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw1_max:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw1_min:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw1_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw2_max:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw2_min:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw2_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw3_max:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw3_min:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        f3_screw3_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_base:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        hand_body:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        hand_palm:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_tool0:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         indy_flange:
           Alpha: 1
           Show Axes: false
@@ -414,6 +112,14 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        aruco_1:
+          Value: true
+        aruco_39:
+          Value: true
+        aruco_82:
+          Value: true
+        aruco_88:
+          Value: true
         camera_accel_frame:
           Value: true
         camera_accel_optical_frame:
@@ -556,9 +262,13 @@ Visualization Manager:
           Value: true
         indy_link6:
           Value: true
+        object_2:
+          Value: true
         object_3:
           Value: true
-        object_4:
+        object_5:
+          Value: true
+        scissor_center:
           Value: true
         template_grasp:
           Value: true
@@ -581,9 +291,19 @@ Visualization Manager:
                     indy_link6:
                       indy_flange:
                         camera_calib_frame:
+                          aruco_1:
+                            {}
+                          aruco_39:
+                            {}
+                          aruco_82:
+                            {}
+                          aruco_88:
+                            {}
+                          object_2:
+                            {}
                           object_3:
                             {}
-                          object_4:
+                          object_5:
                             {}
                         hand_base:
                           hand_body:
@@ -637,7 +357,8 @@ Visualization Manager:
                                   {}
                             hand_palm:
                               hand_tool0:
-                                {}
+                                scissor_center:
+                                  {}
           template_origin:
             template_grasp:
               {}
@@ -669,7 +390,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /camera/color/image_raw
+        Value: /ys_rgb_masked
       Value: true
   Enabled: true
   Global Options:
@@ -717,41 +438,41 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.3340948820114136
+      Distance: 0.6607696413993835
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.2465556263923645
-        Y: -0.25610092282295227
-        Z: 0.13557271659374237
+        X: -0.03039371781051159
+        Y: 0.33796361088752747
+        Z: 0.6272339224815369
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6353979706764221
+      Pitch: 0.09039808809757233
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.07541036605835
+      Yaw: 5.3754119873046875
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1016
+  Height: 2176
   Hide Left Dock: false
   Hide Right Dock: true
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000002680000039efc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d00000195000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006501000001d8000000fd0000002800fffffffb0000000a0049006d00610067006501000002db000001000000002800ffffff000000010000015f0000039efc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d0000039e000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004cc0000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd000000040000000000000268000007e4fc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b000000b000fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000006e000003990000018200fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d0061006700650100000413000002150000004a00fffffffb0000000a0049006d00610067006501000006340000021e0000004a00ffffff000000010000015f0000039efc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d0000039e0000013200fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d0065010000000000000450000000000000000000000d00000007e400000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Tool Properties:
     collapsed: false
   Views:
     collapsed: true
-  Width: 1850
-  X: 70
-  Y: 27
+  Width: 3956
+  X: 140
+  Y: 54
