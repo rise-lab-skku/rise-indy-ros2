@@ -5,7 +5,6 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /TF1/Frames1
-        - /Image2
       Splitter Ratio: 0.5088235139846802
     Tree Height: 673
   - Class: rviz_common/Selection
@@ -112,14 +111,6 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        aruco_1:
-          Value: true
-        aruco_39:
-          Value: true
-        aruco_82:
-          Value: true
-        aruco_88:
-          Value: true
         camera_accel_frame:
           Value: true
         camera_accel_optical_frame:
@@ -236,8 +227,6 @@ Visualization Manager:
           Value: false
         f3_screw3_origin:
           Value: false
-        fp_detection:
-          Value: false
         hand_base:
           Value: false
         hand_body:
@@ -264,16 +253,8 @@ Visualization Manager:
           Value: true
         object_2:
           Value: true
-        object_3:
-          Value: true
-        object_5:
-          Value: true
         scissor_center:
           Value: true
-        template_grasp:
-          Value: true
-        template_origin:
-          Value: false
       Marker Scale: 0.30000001192092896
       Name: TF
       Show Arrows: true
@@ -281,8 +262,6 @@ Visualization Manager:
       Show Names: true
       Tree:
         indy_link0:
-          fp_detection:
-            {}
           indy_link1:
             indy_link2:
               indy_link3:
@@ -291,19 +270,7 @@ Visualization Manager:
                     indy_link6:
                       indy_flange:
                         camera_calib_frame:
-                          aruco_1:
-                            {}
-                          aruco_39:
-                            {}
-                          aruco_82:
-                            {}
-                          aruco_88:
-                            {}
                           object_2:
-                            {}
-                          object_3:
-                            {}
-                          object_5:
                             {}
                         hand_base:
                           hand_body:
@@ -359,9 +326,6 @@ Visualization Manager:
                               hand_tool0:
                                 scissor_center:
                                   {}
-          template_origin:
-            template_grasp:
-              {}
       Update Interval: 0
       Value: true
     - Class: rviz_default_plugins/Image
@@ -390,7 +354,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /ys_rgb_masked
+        Value: /camera/color/image_raw
       Value: true
   Enabled: true
   Global Options:
