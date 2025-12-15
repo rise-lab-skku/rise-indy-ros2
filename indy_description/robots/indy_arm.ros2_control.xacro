@@ -15,9 +15,10 @@
         </xacro:unless>
       </hardware>
 
-      <xacro:macro name="configure_joint" params="ns:=^ model:=^ joint_id initial_position when:=true">
+      <xacro:macro name="configure_joint" params="ns:=^ model:=^ description_pkg:=^ joint_id initial_position when:=true">
         <xacro:if value="${when}">
-          <xacro:property name="joint_limit" value="${xacro.load_yaml(model + '/joint_limits.yaml')['joint_limits']['joint' + str(joint_id)]}"/>
+          <xacro:property name="_desc" value="$(find ${description_pkg})"/>
+          <xacro:property name="joint_limit" value="${xacro.load_yaml(_desc + '/robots/' + model + '/joint_limits.yaml')['joint_limits']['joint' + str(joint_id)]}"/>
           <joint name="${ns}_joint${joint_id}">
             <param name="initial_position">${initial_position}</param>
             <command_interface name="position">
