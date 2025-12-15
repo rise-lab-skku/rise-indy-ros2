@@ -88,6 +88,8 @@ def _setup(context, *args, **kwargs):
             FindExecutable(name="xacro"),
             " ",
             indy_semantic_xacro_file,
+            " model:=",
+            model,
         ]
     )
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_config}
