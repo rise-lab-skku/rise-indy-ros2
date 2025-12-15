@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="indy">
-  <xacro:macro name="indy_arm" params="arm_id:='indy' ">
+  <xacro:macro name="indy_arm" params="arm_id:='indy' description_pkg:='indy_description' model:='indy7'">
 
     <xacro:include filename="$(find indy_moveit_config)/srdf/group_definition.xacro"/>
     <xacro:group_definition arm_id="${arm_id}" group_name="${arm_id}_arm" tip_link="${arm_id}_flange"/>
@@ -24,8 +24,20 @@
     <disable_collisions link1="${arm_id}_link4" link2="${arm_id}_link6" reason="Never"/>
     <disable_collisions link1="${arm_id}_link4" link2="${arm_id}_flange" reason="Never"/>
     <disable_collisions link1="${arm_id}_link5" link2="${arm_id}_link6" reason="Adjacent"/>
-    <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_link7" reason="Adjacent"/>
-    <!-- <disable_collisions link1="${arm_id}_link7" link2="${arm_id}_flange" reason="Adjacent"/>
-    <disable_collisions link1="${arm_id}_link7" link2="${arm_id}_flange" reason="Default"/> -->
+    <!-- <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_link7" reason="Adjacent"/> -->
+    <!-- <disable_collisions link1="${arm_id}_link7" link2="${arm_id}_flange" reason="Adjacent"/> -->
+
+    <xacro:include filename="$(find ${description_pkg})/robots/utils.xacro"/>
+    <xacro:set_property_if_joint_exist joint_id="6" property_name="joint6_exist"/>
+
+    <xacro:if value="${joint6_exist}">
+      <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_link7" reason="Adjacent"/>
+      <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_flange" reason="Never"/>
+      <disable_collisions link1="${arm_id}_link7" link2="${arm_id}_flange" reason="Adjacent"/>
+    </xacro:if>
+    <xacro:unless value="${joint6_exist}">
+      <disable_collisions link1="${arm_id}_link6" link2="${arm_id}_flange" reason="Adjacent"/>
+    </xacro:unless>
+
   </xacro:macro>
 </robot>

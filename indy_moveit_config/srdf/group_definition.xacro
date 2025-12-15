@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="indy">
-  <xacro:macro name="group_definition" params="group_name arm_id tip_link">
+  <xacro:macro name="group_definition" params="group_name arm_id tip_link description_pkg:='indy_description' model:='indy7'">
     <group name="${group_name}">
       <chain base_link="${arm_id}_link0" tip_link="${tip_link}"/>
     </group>
@@ -13,7 +13,15 @@
       <joint name="${arm_id}_joint4" value="0"/>
       <joint name="${arm_id}_joint5" value="${-pi/2}"/>
       <!-- <joint name="${arm_id}_joint6" value="0"/> -->
-      <joint name="${arm_id}_flange" value="0"/>
+      <!-- <joint name="${arm_id}_flange" value="0"/> -->
+
+    <xacro:include filename="$(find ${description_pkg})/robots/utils.xacro"/>
+    <xacro:set_property_if_joint_exist joint_id="6" property_name="joint6_exist"/>
+
+    <xacro:if value="${joint6_exist}">
+      <joint name="${arm_id}_joint6" value="0"/>
+    </xacro:if>
+
     </group_state>
   </xacro:macro>
 </robot>

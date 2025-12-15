@@ -16,9 +16,10 @@
   <!-- ========================================================== -->
 
 
-  <xacro:macro name="set_property_if_joint_exist" params="joint_id property_name">
+  <xacro:macro name="set_property_if_joint_exist" params="joint_id property_name model:=^ description_pkg:=^">
 
-    <xacro:property name="kinematics_dict" value="${xacro.load_yaml(model + '/kinematics.yaml')['kinematics']}"/>
+    <xacro:property name="_desc" value="$(find ${description_pkg})"/>
+    <xacro:property name="kinematics_dict" value="${xacro.load_yaml(_desc + '/robots/' + model + '/kinematics.yaml')['kinematics']}"/>
     <xacro:property name="key" value="joint${joint_id}"/>
 
     <xacro:if value="${key in kinematics_dict}">
